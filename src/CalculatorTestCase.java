@@ -1,3 +1,9 @@
+//Author: JerseySu
+//Email: loverjersey@gmail.com
+//Comment: This is a TestCase for Android Calculator
+//Device: Android 6
+
+
 package UIAutomator;
 
 
@@ -10,7 +16,7 @@ import com.android.uiautomator.core.UiScrollable;
 
 import UIAutomator.Calculator;
 
-public class FirstCalculator extends UiAutomatorTestCase {   
+public class CalculatorTestCase extends UiAutomatorTestCase {   
 	
 	//Init Caluclator class
 	Calculator calc = new Calculator();
@@ -66,7 +72,7 @@ public class FirstCalculator extends UiAutomatorTestCase {
 	
 	public void testingFormulor() throws UiObjectNotFoundException {   
 	    
-		//this.LaunchApps();
+		this.LaunchApps();
 		// now the Calculator app is open
 		// test the press of button "7"
 		calc.Seven().click();
@@ -83,8 +89,7 @@ public class FirstCalculator extends UiAutomatorTestCase {
 		
 		// formulor should be "8" ¡Û
 		assertEquals("8", calc.Formula().getText());
-		System.out.printf("Formulor is %s",calc.Formula().getText().toString());	
-		
+		System.out.printf("Formulor is %s",calc.Formula().getText().toString());			
 
 		
 		// press of "Back" button
@@ -93,7 +98,7 @@ public class FirstCalculator extends UiAutomatorTestCase {
 		
 			
 			
-		}
+	}
 	
 	public void testingFunc() throws UiObjectNotFoundException {
 		this.LaunchApps();		
