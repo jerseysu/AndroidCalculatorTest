@@ -18,10 +18,10 @@ import UIAutomator.Calculator;
 
 public class CalculatorTestCase extends UiAutomatorTestCase {   
 	
-	//Init Caluclator class
-	Calculator calc = new Calculator();
-	UiObject Calculator;
-	UiObject allAppsButton;
+		//Init Caluclator class
+		Calculator calc = new Calculator();
+		UiObject Calculator;
+		UiObject allAppsButton;
 	
 
     protected void setUp()   {
@@ -50,13 +50,13 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		UiScrollable ListOfapplications = new UiScrollable(new UiSelector().scrollable(true));
 			
 		ListOfapplications.setAsHorizontalList();
-		// find the application with the name Calculators
-			
+		// find the application with the name Calculators			
 		Calculator = new UiObject(new UiSelector().text("Calculator"));
+		
 		Calculator.clickAndWaitForNewWindow();
-		//Calculator.clearTextField();
-			
-		assertTrue("Unable to detect Calculator App", Calculator.exists());
+		
+		//Detect app launched
+		assertTrue("Unable to detect Calculator App", calc.Pager().exists());
 		System.out.println("Calculator App launched");
 		    
 		//Clear Formulor
@@ -71,9 +71,10 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 	
 	
 	public void testingFormulor() throws UiObjectNotFoundException {   
-	    
+		
+		// Launch Calculator app
 		this.LaunchApps();
-		// now the Calculator app is open
+		
 		// test the press of button "7"
 		calc.Seven().click();
 		// test the press of button "+"
@@ -82,15 +83,19 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		calc.One().click();
 		//Results should be "8"
 		assertEquals("8", calc.Results().getText());
-		System.out.printf("Results is %s",calc.Formula().getText().toString());
+		System.out.printf("Results is %s %n",calc.Results().getText().toString());
 		
 		// test the press of button "="
 		calc.Eql().click();
 		
 		// formulor should be "8" กÛ
 		assertEquals("8", calc.Formula().getText());
-		System.out.printf("Formulor is %s",calc.Formula().getText().toString());			
-
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());			
+		
+		//Clear
+		calc.Clr().click();
+		assertEquals("", calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());	
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -101,23 +106,50 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 	}
 	
 	public void testingFunc() throws UiObjectNotFoundException {
+		//Launch Calculator
 		this.LaunchApps();		
 		//test the press of button "7"
 		calc.Seven().click();
 		
 		//tassertEquals "7"
 		assertEquals("7", calc.Formula().getText());
-		System.out.printf("Formulor is %s",calc.Formula().getText().toString());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
 		
 		//test the press of button "del"
 		calc.Del().click();
 		
 		assertEquals("", calc.Formula().getText());
-		System.out.printf("Formulor is %s",calc.Formula().getText().toString());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
 	}
+	
+	public void testingUI() throws UiObjectNotFoundException{
+		
+		//Launch Calculator
+		LaunchApps();
+		
+		/*assertEquals("+".toString(), calc.Add().getText());
+		assertEquals("-".toString(), calc.Sub().getText());
+		assertEquals("กา".toString(), calc.Div().getText());
+		assertEquals("กั".toString(), calc.Mul().getText());*/
+		
+				
+		assertEquals("0", calc.Zero().getText());
+		assertEquals("1", calc.One().getText());
+		assertEquals("2", calc.Two().getText());
+		assertEquals("3", calc.Three().getText());
+		
+		assertEquals("4", calc.Four().getText());
+		assertEquals("5", calc.Five().getText());
+		assertEquals("6", calc.Six().getText());
+		assertEquals("7", calc.Seven().getText());
+		
+		assertEquals("8", calc.Eight().getText());
+		assertEquals("9", calc.Night().getText());
+	}
+	
 }
 
 	

@@ -112,5 +112,10 @@ public class Calculator {
         return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/clr"));
     }
 	
+	//Pad pager
+	public UiObject Pager() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/pad_pager"));
+    }
+	
 	
 }
