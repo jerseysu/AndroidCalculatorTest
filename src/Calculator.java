@@ -117,5 +117,79 @@ public class Calculator {
         return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/pad_pager"));
     }
 	
+	//Sin Func
+	public UiObject Sin_Func() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_sin"));
+    }
+	
+	//Cos Func
+	public UiObject Cos_Func() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_cos"));
+    }
+	
+	//tan Func
+	public UiObject Tan_Func() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_tan"));
+    }
+	
+	//ln Func
+	public UiObject Ln_Func() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_ln"));
+    }
+	
+	//log Func
+	public UiObject Log_Func() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_log"));
+    }
+	
+	//fact Func
+	public UiObject Fact_Func() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_fact"));
+    }
+	
+	//Const_pi
+	public UiObject PI() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/const_pi"));
+    }
+	
+	//op_pow
+	public UiObject Pow() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/op_pow"));
+    }
+	
+	//left parenthesis
+	public UiObject LParen() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/lparen"));
+    }
+	
+	//right parenthesis
+	public UiObject RParen() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/rparen"));
+    }
+
+	//square root
+	public UiObject Sqrt() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/op_sqrt"));
+    }
+	
+	//Pad Adv
+	public UiObject Pad_Adv() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/pad_advanced"));
+    }
+	
+	//Pad Ops
+	public UiObject Pad_Ops() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/pad_operator"));
+    }
+	
+	//Pad Nums
+	public UiObject Pad_Num() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/pad_numeric"));
+    }
+	
+	
+	
+	
+	
 	
 }
