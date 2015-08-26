@@ -132,7 +132,7 @@ public class Calculator {
         return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_tan"));
     }
 	
-	//ln Func
+	//natural logarithm
 	public UiObject Ln_Func() throws UiObjectNotFoundException {
         return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_ln"));
     }
@@ -144,13 +144,19 @@ public class Calculator {
 	
 	//fact Func
 	public UiObject Fact_Func() throws UiObjectNotFoundException {
-        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/fun_fact"));
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/op_fact"));
     }
 	
 	//Const_pi
 	public UiObject PI() throws UiObjectNotFoundException {
         return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/const_pi"));
     }
+	
+	//Eular'sNumber	
+	public UiObject E() throws UiObjectNotFoundException {
+        return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/const_e"));
+    }
+	
 	
 	//op_pow
 	public UiObject Pow() throws UiObjectNotFoundException {

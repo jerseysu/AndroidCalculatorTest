@@ -6,7 +6,6 @@
 
 package UIAutomator;
 
-
 //Import the uiautomator libraries
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
@@ -14,9 +13,11 @@ import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiScrollable;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 
 import UIAutomator.Calculator;
+import android.os.RemoteException;
 
 public class CalculatorTestCase extends UiAutomatorTestCase {   
 	
@@ -66,7 +67,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		if (calc.Clr().exists() && calc.Formula().getText()!=""){
 			calc.Clr().click();
 		    System.out.println("Calculator Clear");
-		}	    
+		}
 		    
 			
     }
@@ -120,8 +121,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		
 		//test the press of button "del"
 		calc.Del().longClick();
-		Thread.sleep(3000);
-		
+		Thread.sleep(3000);		
 		
 		assertEquals("", calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
@@ -241,8 +241,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		calc.Pad_Adv().swipeRight(30);
 		calc.Eql().click();    
 
-		
-	    System.out.println("Sin : "+sin_deg_round);
+		System.out.println("Sin : "+sin_deg_round);
 	    
 		assertEquals(String.valueOf(sin_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
@@ -258,8 +257,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		//Launch Calculator
 		this.LaunchApps();
 		
-	    double cos_deg=Math.cos(60.0/180.0*Math.PI);  //cos 60    
-	    
+	    double cos_deg=Math.cos(60.0/180.0*Math.PI);  //cos 60	    
 		double cos_deg_round = new BigDecimal(cos_deg).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
 		
 		//Test Cos(60.0/180.0*PI)
@@ -277,7 +275,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		calc.Pad_Adv().swipeRight(30);
 		calc.Eql().click();
 		
-	    System.out.println("Cos : "+cos_deg_round);
+		System.out.println("Cos : "+cos_deg_round);
 	    	
 		assertEquals(String.valueOf(cos_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
@@ -289,19 +287,212 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		getUiDevice().pressBack();
 	}
 	
-	public void testingUI() throws UiObjectNotFoundException{
+	public void testingPadAdv_Tan() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();
+		
+	    double tan_deg=Math.tan(Math.PI/4);  //tan 	    
+		double tan_deg_round = new BigDecimal(tan_deg).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+		
+		//Test tan(PI/4)
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Tan_Func().click();
+		calc.PI().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.Div().click();
+		calc.Four().click();
+		calc.Eql().click();
+		
+		System.out.println("Tan : "+tan_deg_round);
+	    	
+		assertEquals(String.valueOf((int)tan_deg_round), calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+	}
+	
+	public void testingPadAdv_Ln() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();		
+	    	
+		//Test ln(e)
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Ln_Func().click();
+		calc.E().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.Eql().click();
+		
+    	
+		assertEquals("1", calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+	}
+	
+	public void testingPadAdv_Log() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();		
+	    
+		double log_deg=Math.log10(100);  // log(100) / log(10)    
+		double log_deg_round = new BigDecimal(log_deg).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+		
+		//Test log(100) / log(10)
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Log_Func().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.One().click();
+		calc.Zero().click();
+		calc.Zero().click();
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.RParen().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.Div().click();
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Log_Func().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.One().click();
+		calc.Zero().click();
+		
+		calc.Eql().click();
+		
+		System.out.println("Log : "+log_deg_round);
+    	
+		assertEquals(String.valueOf((int)log_deg_round), calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+	}
+	
+	public void testingPadAdv_Factorial() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();		
+	    
+		int fact_deg=1*2*3*4*5*6*7*8*9*10;  // 10!    
+				
+		//Test 10!
+		calc.One().click();
+		calc.Zero().click();
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Fact_Func().click();
+		calc.Pad_Adv().swipeRight(30);
+		
+		calc.Eql().click();
+		
+		System.out.println("Factorial : "+fact_deg);
+    	
+		assertEquals(String.valueOf(fact_deg), calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+	}
+	
+	public void testingPadAdv_Power() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();
+	    
+		int power_deg=(int) Math.pow(2, 10);  // 2^10		
+		
+		//Test 2^10
+		calc.Two().click();
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Pow().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.One().click();
+		calc.Zero().click();
+		
+		calc.Eql().click();
+		
+		System.out.println("Power : "+power_deg);
+    	
+		assertEquals(String.valueOf(power_deg), calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+	}
+	
+	public void testingPadAdv_Squre() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();
+		
+		double squre_deg=Math.sqrt(100);  // squre(100)
+		double squre_deg_round = new BigDecimal(squre_deg).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+		
+		//Test squre(100)
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.Sqrt().click();
+		calc.Pad_Adv().swipeRight(30);
+		calc.One().click();
+		calc.Zero().click();
+		calc.Zero().click();
+		
+		calc.Eql().click();
+		
+		System.out.println("Squre : "+squre_deg_round);
+    	
+		assertEquals(String.valueOf((int)squre_deg_round), calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+		
+	}
+	
+	public void testingPadAdv_GetError() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();
+		
+		//Test ()
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.LParen().click();
+		calc.RParen().click();
+		calc.Pad_Adv().swipeRight(30);
+
+		calc.Eql().click();		
+  	
+		assertEquals("Error", calc.Results().getText());		
+		System.out.printf("Results is %s %n",calc.Results().getText().toString());
+			
+		calc.Formula().clearTextField();
+		calc.Results().clearTextField();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+		
+	}
+	
+	
+	public void testingUI() throws UiObjectNotFoundException, UnsupportedEncodingException, RemoteException{
 			
 		//Launch Calculator
 		LaunchApps();
-		
-		
-		//Testing UI present
-		
-		/*assertEquals("+".toString(), calc.Add().getText());
-		assertEquals("-".toString(), calc.Sub().getText());
-		assertEquals("÷".toString(), calc.Div().getText());
-		assertEquals("×".toString(), calc.Mul().getText());*/
-		
+
+		String hex = "221e";
+		int intValue = Integer.parseInt(hex, 16);
+		System.out.println((char)intValue);
+		//Testing UI present		
 				
 		assertEquals("0", calc.Zero().getText());
 		assertEquals("1", calc.One().getText());
@@ -316,7 +507,50 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("8", calc.Eight().getText());
 		assertEquals("9", calc.Night().getText());
 		
-
+		char character='+';
+		assertEquals(String.valueOf(character), calc.Add().getText());
+		character='−';
+		//this is a bug
+		assertEquals(String.valueOf(character), String.valueOf(calc.Sub().getText()));		
+		character='÷';
+		assertEquals(String.valueOf(character), calc.Div().getText());				
+		character='×';
+		assertEquals(String.valueOf(character), calc.Mul().getText());
+		
+		
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		assertEquals("sin", calc.Sin_Func().getText());
+		assertEquals("cos", calc.Cos_Func().getText());
+		assertEquals("tan", calc.Tan_Func().getText());
+		assertEquals("ln", calc.Ln_Func().getText());
+		assertEquals("log", calc.Log_Func().getText());
+		character='!';
+		assertEquals(String.valueOf(character), calc.Fact_Func().getText());
+		character='π';
+		assertEquals(String.valueOf(character), calc.PI().getText());
+		character='e';
+		assertEquals(String.valueOf(character), calc.E().getText());
+		character='^';
+		assertEquals(String.valueOf(character), calc.Pow().getText());
+		character='(';
+		assertEquals(String.valueOf(character), calc.LParen().getText());
+		character=')';
+		assertEquals(String.valueOf(character), calc.RParen().getText());
+		character='√';
+		assertEquals(String.valueOf(character), calc.Sqrt().getText());
+		calc.Pad_Adv().swipeRight(30);
+		
+		//Check Special Charactor ∞ 
+		character='∞';
+		calc.Two().click();
+		calc.Div().click();
+		calc.Zero().click();
+		System.out.printf("Results is %c %n",character);
+		System.out.println( "\\u" + Integer.toHexString('∞' | 0x10000).substring(1) );
+		
+		assertEquals(String.valueOf(character), calc.Results().getText());
+		calc.Eql().click();
+		assertEquals(String.valueOf(character), calc.Formula().getText());
 
 	}
 	
