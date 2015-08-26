@@ -2,6 +2,8 @@
 //Email: loverjersey@gmail.com
 //Comment: This is a TestCase for Android Calculator
 //Device: Android 6
+//ReferencePage:
+//http://university.utest.com/android-ui-testing-uiautomatorviewer-and-uiautomator/
 
 
 package UIAutomator;
@@ -36,40 +38,37 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
     protected void tearDown() {
         /* CloseTestCase */
     	// PressHome
-		getUiDevice().pressHome();    	
-    	
-    }
+		getUiDevice().pressHome();
+	}
     
     private void LaunchApps() throws UiObjectNotFoundException{
-    	// Simulate a short press on the HOME button.
-	    getUiDevice().pressHome();
-	    
-	    // All Apps button’s content-description property has the value “Apps”
-	    allAppsButton = new UiObject(new UiSelector().description("Apps"));
+    	// Simulate a short press on the HOME button
+    	getUiDevice().pressHome();
 
-	    // Simulate a click to bring up the All Apps screen.
-	    allAppsButton.clickAndWaitForNewWindow();
+	    // All Apps button's content-description property has the value “Apps”
+    	allAppsButton = new UiObject(new UiSelector().description("Apps"));
+
+    	// Simulate a click to bring up the All Apps screen.
+    	allAppsButton.clickAndWaitForNewWindow();
 	    
-		// Get a reference to that list
-		UiScrollable ListOfapplications = new UiScrollable(new UiSelector().scrollable(true));
+    	// Get a reference to that list
+    	UiScrollable ListOfapplications = new UiScrollable(new UiSelector().scrollable(true));
 			
-		ListOfapplications.setAsHorizontalList();
-		// find the application with the name Calculators			
-		Calculator = new UiObject(new UiSelector().text("Calculator"));
-		
-		Calculator.clickAndWaitForNewWindow();
-		
-		//Detect app launched
-		assertTrue("Unable to detect Calculator App", calc.Pager().exists());
-		System.out.println("Calculator App launched");
-		    
-		//Clear Formulor
-		if (calc.Clr().exists() && calc.Formula().getText()!=""){
-			calc.Clr().click();
-		    System.out.println("Calculator Clear");
+    	ListOfapplications.setAsHorizontalList();
+    	// find the application with the name Calculators			
+    	Calculator = new UiObject(new UiSelector().text("Calculator"));
+    	
+    	Calculator.clickAndWaitForNewWindow();
+    	
+    	//Detect app launched
+    	assertTrue("Unable to detect Calculator App", calc.Pager().exists());
+    	System.out.println("Calculator App launched");
+    	    
+    	//Clear Formulor
+    	if (calc.Clr().exists() && calc.Formula().getText()!=""){
+        	calc.Clr().click();
+        	System.out.println("Calculator Clear");
 		}
-		    
-			
     }
   
     
@@ -489,9 +488,6 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		//Launch Calculator
 		LaunchApps();
 
-		String hex = "221e";
-		int intValue = Integer.parseInt(hex, 16);
-		System.out.println((char)intValue);
 		//Testing UI present		
 				
 		assertEquals("0", calc.Zero().getText());
@@ -506,6 +502,10 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		
 		assertEquals("8", calc.Eight().getText());
 		assertEquals("9", calc.Night().getText());
+		
+		assertEquals(".", calc.Point().getText());
+		assertEquals("DEL", calc.Del().getText());
+		
 		
 		char character='+';
 		assertEquals(String.valueOf(character), calc.Add().getText());
@@ -540,17 +540,18 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf(character), calc.Sqrt().getText());
 		calc.Pad_Adv().swipeRight(30);
 		
-		//Check Special Charactor ∞ 
+		//Check Special Charactor ∞
+		//Print Unicode number
+		//System.out.println( "\\u" + Integer.toHexString('∞' | 0x10000).substring(1) );
 		character='∞';
 		calc.Two().click();
 		calc.Div().click();
-		calc.Zero().click();
-		System.out.printf("Results is %c %n",character);
-		System.out.println( "\\u" + Integer.toHexString('∞' | 0x10000).substring(1) );
-		
+		calc.Zero().click();		
 		assertEquals(String.valueOf(character), calc.Results().getText());
 		calc.Eql().click();
 		assertEquals(String.valueOf(character), calc.Formula().getText());
+		
+		assertEquals("clr", calc.Clr().getText());
 
 	}
 	
