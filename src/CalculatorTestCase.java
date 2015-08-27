@@ -19,7 +19,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 
 import UIAutomator.Calculator;
-import android.os.RemoteException;
 
 public class CalculatorTestCase extends UiAutomatorTestCase {   
 	
@@ -64,16 +63,11 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
     	assertTrue("Unable to detect Calculator App", calc.Pager().exists());
     	System.out.println("Calculator App launched");
     	    
-    	//Clear Formulor
-    	if (calc.Clr().exists() && calc.Formula().getText()!=""){
-        	calc.Clr().click();
-        	System.out.println("Calculator Clear");
-		}
+    	//Clear Formular
+    	calc.ClearFormular();
     }
-  
     
-
-	public void testingFormulor() throws UiObjectNotFoundException {   
+    public void testingFormulor() throws UiObjectNotFoundException {   
 		
 		// Launch Calculator app
 		this.LaunchApps();
@@ -125,8 +119,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("", calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
 		
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -147,8 +141,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("15", calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
 		
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 
 	}
@@ -168,8 +162,9 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
 		
 		
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formula
+		calc.ClearFormular();
+		
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -189,8 +184,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("12", calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());
 		
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -211,8 +206,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("12", calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -235,7 +230,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		calc.One().click();
 		calc.Eight().click();
 		calc.Zero().click();
-		calc.Pad_Adv().dragTo(calc.Seven(), 30);		
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
 		calc.PI().click();
 		calc.Pad_Adv().swipeRight(30);
 		calc.Eql().click();    
@@ -245,8 +240,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf(sin_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -279,8 +274,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf(cos_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -307,8 +302,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf((int)tan_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -329,8 +324,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("1", calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -367,8 +362,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf((int)log_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -394,8 +389,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf(fact_deg), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -422,8 +417,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf(power_deg), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -451,8 +446,30 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals(String.valueOf((int)squre_deg_round), calc.Formula().getText());
 		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+		
+	}
+	
+	public void testingPadAdv_PI() throws UiObjectNotFoundException {
+		//Launch Calculator
+		this.LaunchApps();
+		
+		//Test π
+		calc.Pad_Adv().dragTo(calc.Seven(), 30);
+		calc.PI().click();
+		calc.Pad_Adv().swipeRight(30);
+		
+		calc.Eql().click();
+    	
+		assertEquals("3.1415926536", calc.Formula().getText());
+		System.out.printf("Formulor is %s %n",calc.Formula().getText().toString());		
+			
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -474,8 +491,8 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		assertEquals("Error", calc.Results().getText());		
 		System.out.printf("Results is %s %n",calc.Results().getText().toString());
 			
-		calc.Formula().clearTextField();
-		calc.Results().clearTextField();
+		//Clear Formular
+    	calc.ClearFormular();
 		
 		// press of "Back" button
 		getUiDevice().pressBack();
@@ -483,7 +500,7 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 	}
 	
 	
-	public void testingUI() throws UiObjectNotFoundException, UnsupportedEncodingException, RemoteException{
+	public void testingUI() throws UiObjectNotFoundException, UnsupportedEncodingException{
 			
 		//Launch Calculator
 		LaunchApps();
@@ -551,10 +568,57 @@ public class CalculatorTestCase extends UiAutomatorTestCase {
 		calc.Eql().click();
 		assertEquals(String.valueOf(character), calc.Formula().getText());
 		
-		assertEquals("clr", calc.Clr().getText());
+		assertEquals("clr", calc.Clr().getText());		
+		
 
 	}
+	public void testingPadOps_Display() throws UiObjectNotFoundException {
+		//Launch Calculator
+		LaunchApps();
+		//click Add
+		calc.Add().click();
+		assertEquals("", calc.Formula().getText());		
+		//click Mul
+		calc.Mul().click();
+		assertEquals("", calc.Formula().getText());
+		//click Div
+		calc.Div().click();
+		assertEquals("", calc.Formula().getText());
+		//click Sub (There is a bug here!!)
+		calc.Sub().click();
+		assertEquals("", calc.Formula().getText());
+		
+		//Clear Formular
+    	calc.ClearFormular();
+		
+		// press of "Back" button
+		getUiDevice().pressBack();
+		
+	}
 	
+	public void testingPadOps_OverFlow_01() throws UiObjectNotFoundException {
+		//Launch Calculator
+		LaunchApps();
+		
+		//testing 999999999+2
+		for (int i=1;i<=10;i++){
+			calc.Night().click();
+		}
+		calc.Add().click();
+		calc.Two().click();
+		calc.Eql().click();    	
+    	
+    	System.out.printf("Results is %s %n",calc.Formula().getText());
+		
+    	assertEquals("1.0000000E10", calc.Formula().getText());
+    	
+    	//Clear Formular
+    	calc.ClearFormular();
+    	
+		// press of "Back" button
+		getUiDevice().pressBack();
+		
+	}	
 }
 
 	

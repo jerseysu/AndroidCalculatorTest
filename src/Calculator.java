@@ -7,6 +7,7 @@ package UIAutomator;
 
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiSelector;
+
 import com.android.uiautomator.core.UiObjectNotFoundException;
 
 public class Calculator {
@@ -193,9 +194,11 @@ public class Calculator {
         return new UiObject(new UiSelector().resourceId("com.android.calculator2:id/pad_numeric"));
     }
 	
-	
-	
-	
-	
-	
+	//Clear Formular
+	public void ClearFormular() throws UiObjectNotFoundException{		
+		if (Clr().exists())
+			Clr().click();
+		else				
+			Del().swipeLeft(30);
+	}
 }
